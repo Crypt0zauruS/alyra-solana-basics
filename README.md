@@ -1,46 +1,120 @@
-# Getting Started with Create React App
+# Solana React Project 🚀
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Bienvenue dans le projet de base Solana React ! Ce projet utilise React pour construire une interface utilisateur interagissant avec la blockchain Solana via des programmes Anchor.
 
-## Available Scripts
+## Structure du Projet 📁
 
-In the project directory, you can run:
+Voici un aperçu des fichiers et dossiers principaux de votre projet :
 
-### `npm start`
+```plaintext
+alyra-react/
+├── node_modules/
+├── public/
+├── src/
+│   ├── contract/
+│   │   └── lib.rs
+│   ├── helpers/
+│   │   └── solana.helper.ts
+│   ├── idl/
+│   │   └── idl.ts
+│   ├── pages/
+│   │   ├── Account.tsx
+│   │   ├── Authentication.tsx
+│   │   ├── Dashboard.tsx
+│   │   ├── Transfer.tsx
+│   │   ├── App.css
+│   │   ├── App.tsx
+│   │   ├── index.css
+│   │   └── index.tsx
+├── .dropboxignore
+├── .env
+├── .gitignore
+├── config-overrides.js
+├── package-lock.json
+├── package.json
+├── README.md
+└── tsconfig.json
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Description des Fichiers 📄
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### `src/contract/lib.rs`
 
-### `npm test`
+Contient le code du programme Solana écrit en Rust utilisant Anchor. Définit une instruction `initialize` qui initialise un compte avec des champs `data` et `age`.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `src/helpers/solana.helper.ts`
 
-### `npm run build`
+Fonctions utilitaires pour interagir avec la blockchain Solana :
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- `getSolanaBalance` : Obtient le solde en SOL d'une adresse donnée.
+- `getWalletAuthentication` : Signe un message avec le portefeuille.
+- `verifyEncodedMessage` : Vérifie un message signé.
+- `getRecentBlockhash` : Obtient le dernier blockhash.
+- `transferSolana` : Effectue un transfert de SOL.
+- `initializeAccount` : Initialise un compte avec Anchor.
+- `getAccount` : Récupère les informations d'un compte.
+- `getInitializeAccountTransaction` : Crée une transaction d'initialisation de compte avec Anchor.
+- `getInitializeAccountTransactionWWithoutAnchor` : Crée une transaction d'initialisation de compte sans utiliser Anchor.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### `src/idl/idl.ts`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Contient la définition de l'IDL (Interface Definition Language) pour le programme Solana, décrivant les instructions, les comptes et les arguments utilisés par le programme.
 
-### `npm run eject`
+### `src/pages/Account.tsx`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Composant React pour afficher et gérer les informations du compte. Permet de récupérer et d'afficher les informations du compte, ainsi que d'initialiser un nouveau compte.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### `src/pages/Authentication.tsx`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Composant React pour l'authentification avec le portefeuille Solana. Permet de signer des messages et de vérifier les signatures avec le portefeuille Solana.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### `src/pages/Dashboard.tsx`
 
-## Learn More
+Composant principal qui intègre les différents composants de l'application. Vérifie si le portefeuille est connecté et affiche les composants `Authentication`, `Transfer`, et `Account`.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### `src/pages/Transfer.tsx`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Composant React pour transférer des SOL. Permet de saisir le montant et l'adresse de destination, et d'effectuer un transfert de SOL.
+
+### `src/pages/App.tsx`
+
+Composant principal de l'application React. Affiche le solde en SOL du portefeuille connecté, le bouton de connexion du portefeuille, et le composant `Dashboard`.
+
+### `config-overrides.js`
+
+Fichier de configuration pour remplacer certains paramètres de Webpack. Remplace certains modules de Node.js avec des versions compatibles avec le navigateur et ajoute des polyfills.
+
+### `.env`
+
+Fichier de configuration des variables d'environnement.
+
+### `.gitignore`
+
+Fichier pour ignorer certains fichiers et dossiers dans Git.
+
+### `package-lock.json` et `package.json`
+
+Fichiers de configuration npm, décrivant les dépendances du projet et verrouillant les versions des paquets.
+
+### `README.md`
+
+Fichier de documentation du projet.
+
+### `tsconfig.json`
+
+Fichier de configuration TypeScript, décrivant les options de compilation TypeScript pour le projet.
+
+## Démarrage 🚀
+
+1. **Installation des dépendances** :
+   ```
+   npm install
+   ```
+2. **Démarrage du serveur de développement** :
+   ```
+    npm start
+   ```
+3. **Ouvrez votre navigateur** :
+   Ouvrez [http://localhost:3000](http://localhost:3000) pour voir l'application en action.
+
+4. **Happy coding! 😃**
