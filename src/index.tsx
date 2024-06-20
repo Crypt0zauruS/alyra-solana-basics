@@ -1,24 +1,36 @@
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
-import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
-import { PhantomWalletAdapter } from '@solana/wallet-adapter-wallets';
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import {
+  ConnectionProvider,
+  WalletProvider,
+} from "@solana/wallet-adapter-react";
+import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
+import { PhantomWalletAdapter } from "@solana/wallet-adapter-wallets";
+import { TipLinkWalletAutoConnect } from "@tiplink/wallet-adapter-react-ui";
+import { registerTipLinkWallet } from "@tiplink/wallet-adapter";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 
 const wallets = [new PhantomWalletAdapter()];
 
-
+registerTipLinkWallet({
+  clientId: "7d140b1e-6718-4c7e-8ff0-3234081693d9",
+  theme: "dark",
+  title: "Alyra",
+  rpcUrl: process.env.REACT_APP_RPC_URL!,
+});
 
 root.render(
-  <ConnectionProvider endpoint={'https://api.devnet.solana.com'}>
-    <WalletProvider wallets={wallets} autoConnect>
-      <WalletModalProvider>
-        <App />
-      </WalletModalProvider>
-    </WalletProvider>
+  <ConnectionProvider endpoint={process.env.REACT_APP_RPC_URL!}>
+    <TipLinkWalletAutoConnect isReady={wallets.length > 0} query={{}}>
+      <WalletProvider wallets={wallets} autoConnect>
+        <WalletModalProvider>
+          <App />
+        </WalletModalProvider>
+      </WalletProvider>
+    </TipLinkWalletAutoConnect>
   </ConnectionProvider>
 );

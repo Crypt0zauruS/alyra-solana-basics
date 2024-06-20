@@ -52,3 +52,7 @@ dist/
 # Ignore dependencies managed by package managers
 node_modules/
 # ----
+# Automatically updated .dropboxignore file at "Jeu 20 jui 2024 14:18:10 EDT"
+# ----
+.env
+# ----
